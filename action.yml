@@ -21,7 +21,7 @@ inputs:
 runs:
   using: docker
   image: build/Dockerfile
-  build-args: 
+  build-args:  |
     SINGULARITY_RECIPE=${{inputs.singularity-file}}
     SINGULARITY_IMAGE=${{inputs.singularity-name}}
 branding:
