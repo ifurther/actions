@@ -40,7 +40,7 @@ runs:
         args:
           - ${{inputs.action-command}}
           - ${{inputs.singularity-file}}
-        - ${{inputs.singularity-name}}.sif
+          - ${{inputs.singularity-name}}.sif
 branding:
   icon: 'aperture' 
   color: 'green'
