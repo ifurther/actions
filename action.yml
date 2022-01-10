@@ -35,12 +35,11 @@ runs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ inputs.TOKEN }}
-  using: 'docker'
-  image: 'docker://ghcr.io/ifurther/actions:latest'
-  args:
-     - ${{inputs.action-command}}
-     - ${{inputs.singularity-file}}
-     - ${{inputs.singularity-name}}.sif
+    - uses: 'docker://ghcr.io/ifurther/actions:latest'
+      args:
+        - ${{inputs.action-command}}
+        - ${{inputs.singularity-file}}
+        - ${{inputs.singularity-name}}.sif
 branding:
   icon: 'aperture' 
   color: 'green'
