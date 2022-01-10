@@ -21,7 +21,9 @@ inputs:
 runs:
   using: docker
   image: build/Dockerfile
-  build-args: SINGULARITY_RECIPE=${{inputs.singularity-file}} SINGULARITY_IMAGE=${{inputs.singularity-name}}
+  build-args: 
+    SINGULARITY_RECIPE=${{inputs.singularity-file}}
+    SINGULARITY_IMAGE=${{inputs.singularity-name}}
 branding:
   icon: 'aperture' 
   color: 'green'
