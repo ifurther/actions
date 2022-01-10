@@ -10,6 +10,10 @@ inputs:
     description: singularity file to setup
     required: false
     default: Singularity
+  singularity-name:
+    description: singularity image name
+    required: false
+    default: ${{ github.repository }}
   token:
     description: Used to pull singularity distributions from eWaterCycle/singularity-versions. Since there's a default, this is typically not supplied by the user.
     required: false
@@ -17,6 +21,7 @@ inputs:
 runs:
   using: docker
   image: build/Dockerfile
+  build-args: SINGULARITY_RECIPE=${{inputs.singularity-file}} SINGULARITY_IMAGE=${{inputs.singularity-name}}
 branding:
   icon: 'aperture' 
   color: 'green'
