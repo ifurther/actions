@@ -14,8 +14,12 @@ inputs:
     description: singularity image name
     required: false
     default: ${{ github.repository }}
+  action-command:
+    description: Set the command for docker running the singularity contianer
+    required: true
+    default: build
   test-command:
-    description: Used to pull singularity distributions from eWaterCycle/singularity-versions. Since there's a default, this is typically not supplied by the user.
+    description: Used to test contianer is normal
     required: false
     default: echo hello
 runs:
@@ -30,15 +34,9 @@ runs:
   using: 'docker'
   image: 'docker://ghcr.io/ifurther/actions:latest'
   args:
-     - build
+     - ${{inputs.action-command}}
      - ${{inputs.singularity-file}}
      - ${{inputs.singularity-name}}.sif
-  using: 'docker'
-  image: 'docker://ghcr.io/ifurther/actions:latest'
-  args:
-     - run
-     - ${{inputs.singularity-name}}.sif
-     - ${{inputs.test-command}}
 branding:
   icon: 'aperture' 
   color: 'green'
