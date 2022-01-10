@@ -20,7 +20,7 @@ inputs:
     default: ${{ github.token }}
 runs:
   using: 'docker'
-  image: 'ghcr.io/ifurther/actions:latest'
+  image: 'docker://ghcr.io/ifurther/actions:latest'
   args:
      - ${{inputs.singularity-file}}
      - ${{inputs.singularity-name}}.sif
