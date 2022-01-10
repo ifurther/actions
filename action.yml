@@ -14,16 +14,31 @@ inputs:
     description: singularity image name
     required: false
     default: ${{ github.repository }}
-  token:
+  test-command:
     description: Used to pull singularity distributions from eWaterCycle/singularity-versions. Since there's a default, this is typically not supplied by the user.
     required: false
-    default: ${{ github.token }}
+    default: echo hello
 runs:
+  using: "composite"
+  steps:    
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.TOKEN }}
   using: 'docker'
   image: 'docker://ghcr.io/ifurther/actions:latest'
   args:
+     - build
      - ${{inputs.singularity-file}}
      - ${{inputs.singularity-name}}.sif
+  using: 'docker'
+  image: 'docker://ghcr.io/ifurther/actions:latest'
+  args:
+     - run
+     - ${{inputs.singularity-name}}.sif
+     - ${{inputs.test-command}}
 branding:
   icon: 'aperture' 
   color: 'green'
