@@ -37,8 +37,9 @@ runs:
         password: ${{ inputs.TOKEN }}
     - uses: 'docker://ghcr.io/ifurther/actions:latest'
       with:
-        - ${{inputs.action-command}}
-        - ${{inputs.singularity-file}}
+        args:
+          - ${{inputs.action-command}}
+          - ${{inputs.singularity-file}}
         - ${{inputs.singularity-name}}.sif
 branding:
   icon: 'aperture' 
