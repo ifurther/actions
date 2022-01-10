@@ -1,0 +1,22 @@
+name: 
+description: 
+author: 
+inputs:
+  singularity-version:
+    description: Version of singularity to setup
+    required: false
+    default: 3.6.1
+  singularity-file:
+    description: singularity file to setup
+    required: false
+    default: Singularity
+  token:
+    description: Used to pull singularity distributions from eWaterCycle/singularity-versions. Since there's a default, this is typically not supplied by the user.
+    required: false
+    default: ${{ github.token }}
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: 'aperture' 
+  color: 'green'
